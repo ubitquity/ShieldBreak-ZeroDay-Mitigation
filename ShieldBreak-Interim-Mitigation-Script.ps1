@@ -1,3 +1,9 @@
+Interim Mitigation Script (PowerShell)
+Until Microsoft releases an official binary patch via Windows Update, system administrators can apply temporary mitigations. The following script restricts the ability of standard users to create directory junctions in temporary folders commonly targeted by these exploits.
+
+Note: Run this script from an elevated PowerShell prompt (Run as Administrator). This is a temporary workaround and may impact certain legacy applications that rely on these specific temp folder behaviors.
+
+
 # ShieldBreak Interim Mitigation Script
 # Prevents standard users from creating junction points in common temp directories
 
