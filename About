@@ -1,0 +1,15 @@
+Security Advisory: "ShieldBreak" Privilege Escalation
+Vulnerability: Local Privilege Escalation (LPE) to SYSTEM
+Affected Systems: Windows 11 version 25H2, Windows Server 2025
+Threat Actor/Discoverer: Nightmare Eclipse
+Status: Unofficial / Zero-Day (Pending Microsoft CVE)
+
+Hypothetical Root Cause
+Most privilege escalation flaws in Windows Defender stem from how its highly privileged service (MsMpEng.exe, running as NT AUTHORITY\SYSTEM) interacts with user-controlled files. A common vector is a Time-of-Check to Time-of-Use (TOCTOU) vulnerability or improper handling of directory junctions (symlinks).
+
+If an attacker creates a malicious directory junction, they can trick the privileged Defender service into overwriting or modifying critical system files, thereby granting the attacker's standard user account SYSTEM-level privileges.
+
+Part 1: Interim Mitigation Script (PowerShell)
+Until Microsoft releases an official binary patch via Windows Update, system administrators can apply temporary mitigations. The following script restricts the ability of standard users to create directory junctions in temporary folders commonly targeted by these exploits.
+
+Note: Run this script from an elevated PowerShell prompt (Run as Administrator). This is a temporary workaround and may impact certain legacy applications that rely on these specific temp folder behaviors.
